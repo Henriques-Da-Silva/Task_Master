@@ -22,13 +22,14 @@ export const Status = (props: StatusProps) => {
     const anosRestantes = differenceInYears(parseDataBrasileiraParaISO(props.dueDate), hoje);
     const dataFormatada = formatDistance(parseDataBrasileiraParaISO(props.dueDate), hoje, { locale: ptBR });
 
-    console.log("Data em string:", props.dueDate);
-    console.log("Data de vencimento:", vencimento);
-    console.log("Data atual:", hoje);
-    console.log("Dias restantes:", diasRestantes);
-    console.log("Meses restantes:", mesesRestantes);
-    console.log("Anos restantes:", anosRestantes);
-    console.log("Data formatada:", dataFormatada);
+     console.log("Data em string:", props.dueDate);
+     console.log("Data de vencimento:", vencimento);
+     console.log("Data atual:", hoje);
+     console.log("Dias restantes:", diasRestantes);
+     console.log("Meses restantes:", mesesRestantes);
+     console.log("Anos restantes:", anosRestantes);
+     console.log("Data formatada:", dataFormatada);
+     console.log(hoje == vencimento);
     
     if (props.done === true) {
         return (
@@ -40,6 +41,7 @@ export const Status = (props: StatusProps) => {
         )
     }
 }
+
 
 export const StatusOfPriority = (props: StatusProps) => {
     if (props.priority === "low") {
