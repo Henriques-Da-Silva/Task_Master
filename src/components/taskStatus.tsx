@@ -32,11 +32,11 @@ export const Status = (props: StatusProps) => {
     
     if (props.done === true) {
         return (
-            <p title="Status" className="items-center rounded-2xl p-0.5">⚪</p>
+            <p title="Status" className="hover:cursor-default items-center rounded-2xl p-0.5">⚪</p>
         )
     } else {
         return (
-            <p title="Status" className="items-center rounded-2xl p-0.5">🔴</p>
+            <p title="Status" className="hover:cursor-default items-center rounded-2xl p-0.5">🔴</p>
         )
     }
 }
