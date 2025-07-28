@@ -42,7 +42,7 @@
 
 ### 3️⃣ Footer
 
-  Já no **footer**(rodapê) do card, temos a esquerda a informação da data de vencimento da task e um botão a direita.
+  Já no **footer**(rodapê) do card, temos a esquerda a informação sobre o vencimento da task e um botão a direita.
   ```
   • O botão serve para *deletar a task*.
   ```
