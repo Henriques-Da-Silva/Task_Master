@@ -20,9 +20,9 @@ export const Filter = (props: filterProps) => {
     function diasRestantes(dueDate: string): number {
         const today = new Date();
         const [dia, mes, ano] = dueDate.split("/");
-        const dueDateobj = `${ano}-${mes}-${dia}`
-
-        return differenceInDays(dueDateobj, today)
+        const dueDateObj = new Date(Number(ano), Number(mes) - 1, Number(dia));
+    
+        return differenceInDays(dueDateObj, today);
     }
     
     const overdueTasks = useMemo(() => { return tasks.filter((task) => { return diasRestantes(String(task.dueDate)) < 0 && task.done === false; }); }, [tasks]);
@@ -30,141 +30,53 @@ export const Filter = (props: filterProps) => {
     const weekTasks = useMemo(() => { return tasks.filter((task) => { return diasRestantes(String(task.dueDate)) <= 7 && task.done === false && diasRestantes(String(task.dueDate)) > 0; }); }, [tasks]);
     const otherTasks = useMemo(() => { return tasks.filter((task) => { return diasRestantes(String(task.dueDate)) > 7 && task.done === true; }); }, [tasks]);
 
+    function exibirListaDeTarefas(title: string, tasks: any[]) {
+        if (tasks.length === 0) {
+            return null;
+        } else {
+                 return ( <>
+                             <h1 className="text-2xl font-bold p-4">{title}</h1>
+                             <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                                {tasks.map((task) => (
+                                    <li key={task.id} className="flex p-3 rounded-lg justify-center">
+                                        <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
+                                    </li>
+                                ))}
+                             </ul>
+                         </> );
+                }}
+
     if (props.filter === "done") {
         return (
             <div>
-                {undoneTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Não Concluídas</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {undoneTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                                
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                { exibirListaDeTarefas("Não Concluídas", undoneTasks)}
 
-                {doneTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Concluídas</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {doneTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                                
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                { exibirListaDeTarefas("Concluídas", doneTasks)}
+
             </div>
         )
     } else if (props.filter === "priority") {
         return (
             <div>
-                {highPriorityTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Alta</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {highPriorityTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                                
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
-                
-                {mediumPriorityTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Média</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {mediumPriorityTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                                
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                { exibirListaDeTarefas("Alta", highPriorityTasks)}
 
-                {lowPriorityTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Baixa</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {lowPriorityTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                { exibirListaDeTarefas("Média", mediumPriorityTasks)}
+
+                { exibirListaDeTarefas("Baixa", lowPriorityTasks)}
+                
             </div>
         )
     } else if (props.filter === "prazo") {
         return (
             <div>
-                {overdueTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Atrasadas</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {overdueTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                                
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                {exibirListaDeTarefas("Atrasadas", overdueTasks)}
 
-                {todayTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Para Hoje</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {todayTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                                
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                {exibirListaDeTarefas("Para Hoje", todayTasks)}
 
-                {weekTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Para Esta Semana</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {weekTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                                
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                {exibirListaDeTarefas("Para Esta Semana", weekTasks)}
 
-                {otherTasks.length !== 0 && (
-                    <>
-                        <h1 className="text-2xl font-bold p-4">Outras</h1>
-                        <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                            {otherTasks.map((task) => (
-                            <li key={task.id} className="flex p-3 rounded-lg justify-center">
-                                <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
-                                
-                            </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
+                {exibirListaDeTarefas("Outras", otherTasks)}
+
             </div>
         )
     }
