@@ -19,14 +19,13 @@ interface Complete_uncompleteProps {
 
 const Complete_uncomplete = (props: Complete_uncompleteProps) => {
     const { toggleTask } = useTasks();
-    const navigate = useNavigate();
 
     if (props.done === true) {
       return (
         <button  title="Tarefa Completada. 
 Clique para marcar como incompleta." 
             className="hover:bg-blue-500 cursor-pointer rounded-xl p-0.5"
-            onClick={() => {toggleTask(props.id); navigate("/listatarefas")} }> 
+            onClick={() => {toggleTask(props.id);} }> 
             <img width="30" height="30" src="/done.png" alt="checkmark"/> </button>
       )
     }else {
@@ -34,7 +33,7 @@ Clique para marcar como incompleta."
         <button title="Tarefa Incompleta. 
 Clique para marcar como completada." 
             className="hover:bg-blue-500 cursor-pointer rounded-xl p-0.5"
-            onClick={() => {toggleTask(props.id); navigate("/listatarefas")} }> 
+            onClick={() => {toggleTask(props.id);} }> 
             <img width="30" height="30" src="/undone.png" alt="alert"/> </button>
       )
     }
