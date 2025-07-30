@@ -12,6 +12,8 @@
 
   3. Permite também **eliminá-las**.
 
+  4. Permite **filtrar** as suas tasks pelo **Status**(Concluídas/Não Concluídas); **Prioridades** e **Prazo**(de hoje, atrasadas, etc.).
+
   ---
 
 ## 🧩 Interface do Card da Task
