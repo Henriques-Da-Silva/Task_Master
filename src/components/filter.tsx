@@ -19,22 +19,28 @@ export const Filter = (props: filterProps) => {
 
     function diasRestantes(dueDate: string): number {
         const today = new Date();
-        const [dia, mes, ano] = dueDate.split("/");
-        const dueDateObj = new Date(Number(ano), Number(mes) - 1, Number(dia));
+        function parseDataBrasileiraParaISO(dataBR: string): string {
+            const [dia, mes, ano] = dataBR.split("/");
+            return `${ano}-${mes}-${dia}`;
+          }
+
+        if (dueDate.includes("/")) {
+            dueDate = parseDataBrasileiraParaISO(dueDate);
+        }
     
-        return differenceInDays(dueDateObj, today);
+        return differenceInDays(new Date(dueDate), today);
     }
     
     const overdueTasks = useMemo(() => { return tasks.filter((task) => { return diasRestantes(String(task.dueDate)) < 0 && task.done === false; }); }, [tasks]);
     const todayTasks = useMemo(() => { return tasks.filter((task) => { return diasRestantes(String(task.dueDate)) === 0 && task.done === false; }); }, [tasks]);
     const weekTasks = useMemo(() => { return tasks.filter((task) => { return diasRestantes(String(task.dueDate)) <= 7 && task.done === false && diasRestantes(String(task.dueDate)) > 0; }); }, [tasks]);
-    const otherTasks = useMemo(() => { return tasks.filter((task) => { return diasRestantes(String(task.dueDate)) > 7 && task.done === true; }); }, [tasks]);
+    const otherTasks = useMemo(() => { return tasks.filter((task) => { return diasRestantes(String(task.dueDate)) > 7; }); }, [tasks]);
 
     function exibirListaDeTarefas(title: string, tasks: any[]) {
         if (tasks.length === 0) {
-            return null;
+            return null
         } else {
-                 return ( <>
+                 return ( <div className="border-b-2 border-gray-600 mb-5">
                              <h1 className="text-2xl font-bold p-4">{title}</h1>
                              <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                                 {tasks.map((task) => (
@@ -43,7 +49,7 @@ export const Filter = (props: filterProps) => {
                                     </li>
                                 ))}
                              </ul>
-                         </> );
+                         </div> );
                 }}
 
     if (props.filter === "done") {
@@ -66,7 +72,7 @@ export const Filter = (props: filterProps) => {
                 
             </div>
         )
-    } else if (props.filter === "prazo") {
+    } else if (props.filter == "prazo") {
         return (
             <div>
                 {exibirListaDeTarefas("Atrasadas", overdueTasks)}
