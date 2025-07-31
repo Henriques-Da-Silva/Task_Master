@@ -48,3 +48,16 @@
   ```
   • O botão serve para *deletar a task*.
   ```
+
+  ---
+
+## 🔧 Instalações
+
+  1. Date-fns
+  ```
+  npm install date-fns
+  ```
+  2. Tailwind-scrollbar
+  ```
+  npm install tailwind-scrollbar
+  ```
