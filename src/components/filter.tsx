@@ -42,7 +42,7 @@ export const Filter = (props: filterProps) => {
         } else {
                  return ( <div className="border-b-2 border-gray-600 mb-5">
                              <h1 className="text-2xl font-bold p-4">{title}</h1>
-                             <ul className="space-y-3 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                             <ul className="space-y-3 gap-5 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                                 {tasks.map((task) => (
                                     <li key={task.id} className="flex p-3 rounded-lg justify-center">
                                         <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>

@@ -12,9 +12,9 @@ export default function ListaTarefas() {
           
         <div className="p-2">
         <h2 className="text-2xl font-bold mb-4 p-4">Todas as Tarefas</h2>
-        <ul className="space-y-3 gap-85 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        <ul className="space-y-3 gap-5 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {tasks.map((task) => (
-            <li key={task.id} className="p-3 rounded-lg">
+            <li key={task.id} className="flex p-3 rounded-lg justify-center">
                 <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>
                 
             </li>
