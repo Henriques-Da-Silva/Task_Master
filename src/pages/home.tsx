@@ -1,23 +1,33 @@
 import { useState } from "react";
 import { Filter  } from "../components/filter";
 import Init from "../components/init";
+import { FiChevronDown } from "react-icons/fi";
 
 
 export default function Home() {
   const [filter, setFilter] = useState("done")
-  const [search, setSearch] = useState("")
 
   return (
           <Init>
-            <div className="flex items-start justify-between p-3 mb-5">
-                <input type="search" value={search} onChange={(text) => setSearch(text.target.value) } className="p-2 bg-neutral-700 border border-gray-600 rounded-3xl w-90" placeholder="Pesquisar" />
+            <div className="flex flex-row-reverse p-3 mb-5">
+                
+            <div className="relative inline-block w-48">
+              <select
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                id="filter"
+                className="pl-4 appearance-none w-full p-2 pr-10 bg-neutral-800 text-white border border-gray-600 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-400 hover:bg-neutral-700">
+                <option value="done">Status</option>
+                <option value="priority">Prioridade</option>
+                <option value="prazo">Prazo</option>
+                <option value="tag">Tag</option>
+              </select>
 
-                <select value={filter} onChange={(text) => setFilter(text.target.value) } id="filter" className="p-2 bg-neutral-700 border border-gray-600 rounded-3xl w-50" >
-                  <option value="done">Status</option>
-                  <option value="priority">Prioridade</option>
-                  <option value="prazo">Prazo</option>
-                  <option value="tag">Tag</option>
-                </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-white">
+                <FiChevronDown className={`text-lg `} />
+              </div>
+            </div>
+
 
             </div>
 
