@@ -18,7 +18,7 @@ export default function Home() {
   } else {
     return (
             <Init>
-              <div className="flex flex-row-reverse p-3 mb-5">
+              <div className="flex flex-row-reverse p-3">
                   
               <div className="relative inline-block w-48">
                 <select
