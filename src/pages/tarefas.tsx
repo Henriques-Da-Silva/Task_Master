@@ -1,11 +1,15 @@
 import {CardTask} from "../components/CardTask";
 import Init from "../components/init";
 import { useTasks } from "../hooks/useTasks";
+import { OutOfTask } from "../components/outOfTask";
 
 export default function ListaTarefas() {
   const { tasks } = useTasks();
 
-  if (tasks.length === 0) { return <Init> <p className="text-gray-300">Nenhuma tarefa cadastrada.</p> </Init> }
+  if (tasks.length === 0) { 
+     return <Init>
+              <OutOfTask></OutOfTask>
+            </Init> }
 
   return (
     <Init>
