@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useSidebar } from "../hooks/useSidebar";
+import SearchingResults from "./Searching";
 import { useState } from "react";
 
 import { FiMenu } from "react-icons/fi";
@@ -15,6 +16,7 @@ interface InitProps {
 export default function Init(props: InitProps) {
   const {openSidebar, setOpenSidebar} = useSidebar();
   const [search, setSearch] = useState("")
+  const searching = search.trim()
 
   return (
     <div className="flex min-h-screen bg-neutral-900 text-white">
@@ -65,8 +67,9 @@ export default function Init(props: InitProps) {
 
             <div className="p-5 min-h-[550px] max-h-[calc(100vh-90px)] overflow-y-auto scrollbar scrollbar-thumb-gray-800 scrollbar-hover:scrollbar-thumb-slate-700">
                   <div>
-                      {props.children}
-                  </div>
+                      {searching !== "" && <SearchingResults search={searching}></SearchingResults>} 
+                      {searching === "" && props.children}
+                  </div >
               </div>
 
           </div>
