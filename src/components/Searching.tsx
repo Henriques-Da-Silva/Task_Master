@@ -1,6 +1,6 @@
 import { useTasks } from "../hooks/useTasks";
-import { CardTask } from "./CardTask";
 import { FaSearch } from "react-icons/fa";
+import { CardTask } from "./CardTask";
 import { useMemo } from "react";
 
 interface SearchProps {
@@ -10,7 +10,8 @@ interface SearchProps {
 export default function SearchingResults(props: SearchProps) {
     const searchWord = props.search.toLowerCase().trim();
     const { tasks } = useTasks();
-    const searchingResults = useMemo(() => {return tasks.filter((task) => task.title.toLowerCase().trim().includes(searchWord))}, [tasks])
+
+    const searchingResults = useMemo(() => {return tasks.filter((task) => task.title.toLowerCase().trim().startsWith(searchWord))}, [tasks, searchWord])
 
     if (searchingResults.length === 0) {
         return (

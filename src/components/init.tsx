@@ -24,7 +24,7 @@ export default function Init(props: InitProps) {
           <nav className="flex flex-col gap-2">
 
             <NavLink to="/" className={`flex gap-1 text-3xl font-bold text-white mb-10 mt-2 hover:text-blue-200`}>
-              <img title="Status" src="/image.png" alt="Ícone" className={`${openSidebar && 'ml-2'} duration-200`} width={36} height={36}/>
+              <img title="Início" src="/image.png" alt="Ícone" className={`${openSidebar && 'ml-2'} duration-200`} width={36} height={36}/>
               <p className={`${openSidebar && 'scale-0'} duration-200`}>TaskMaster</p>
             </NavLink>
 
@@ -44,14 +44,14 @@ export default function Init(props: InitProps) {
               <p className={`${openSidebar && 'hidden'} duration-200`}>Tarefas</p>
             </NavLink>
 
-            <NavLink to="/" className={`font-semibold text-lg flex gap-2 items-center text-white p-2 rounded-[8px] mb-1.5 hover:bg-zinc-400`}>
-              <IoAlertCircleOutline className={`text-2xl text-white block float-left hover:cursor-pointer mr-0.5 ${openSidebar && 'ml-1 text-3xl'} duration-200`} />
-              <p className={`${openSidebar && 'hidden'} duration-200`}>Não Concluídas</p>
-            </NavLink>
-
-            <NavLink to="/" className={`font-semibold text-lg flex gap-2 items-center text-white p-2 rounded-[8px] mb-1.5 hover:bg-zinc-400`}>
+            <NavLink to="/concluidas" className={`font-semibold text-lg flex gap-2 items-center text-white p-2 rounded-[8px] mb-1.5 hover:bg-zinc-400`}>
               <MdTaskAlt className={`text-2xl text-white block float-left hover:cursor-pointer mr-0.5 ${openSidebar && 'ml-1 text-3xl'} duration-200`} />
               <p className={`${openSidebar && 'hidden'} duration-200`}>Concluídas</p>
+            </NavLink>
+
+            <NavLink to="/atrasadas" className={`font-semibold text-lg flex gap-2 items-center text-white p-2 rounded-[8px] mb-1.5 hover:bg-zinc-400`}>
+              <IoAlertCircleOutline className={`text-2xl text-white block float-left hover:cursor-pointer mr-0.5 ${openSidebar && 'ml-1 text-3xl'} duration-200`} />
+              <p className={`${openSidebar && 'hidden'} duration-200`}>Atrasadas</p>
             </NavLink>
 
           </nav>
@@ -59,7 +59,7 @@ export default function Init(props: InitProps) {
 
         <div className="flex flex-col flex-1">
             <header className="bg-stone-950 flex justify-between p-6 items-center border-y border-gray-400 rounded-tr-[8px]">
-              <FiMenu title={`${!openSidebar ? 'Abrir Menu' : 'Fechar Menu'}`}  className="text-3xl hover:cursor-pointer hover:text-blue-200" onClick={() => setOpenSidebar(!openSidebar)}/>
+              <FiMenu title={`${!openSidebar ? 'Fechar Menu' : 'Abrir Menu'}`}  className="text-3xl hover:cursor-pointer hover:text-blue-200" onClick={() => setOpenSidebar(!openSidebar)}/>
               <h2 className="text-cyan-100 text-lg">Bem vindo ao seu app To-do!</h2>
             </header>
 
