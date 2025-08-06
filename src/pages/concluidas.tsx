@@ -8,6 +8,7 @@ import { IoClose } from "react-icons/io5";
 
 export const Concluidas = () => {
     const { tasks } = useTasks();
+    const { removeTask } = useTasks();
     
     const concludedTasks = useMemo(() => {return tasks.filter(task => task.done === true);}, [tasks]);
     const [showconfirm, setShowConfirm] = useState(false);
@@ -25,12 +26,12 @@ export const Concluidas = () => {
                 </ul>
             </div>
 
-            <div className="relative">
+           { concludedTasks.length > 0 && ( <div className="relative">
                 <button title="Deletar Todas!" className="fixed right-10 bottom-10 flex items-center bg-blue-800 rounded-full shadow-lg shadow-gray-700 hover:bg-blue-500 cursor-pointer transition-transform duration-200 hover:scale-110 outline-none"
                 onClick={() => setShowConfirm(true)}>
                     <MdDeleteSweep className="text-6xl p-2.5" />
                 </button>
-            </div>
+            </div>)}
 
             {showconfirm && (
                 <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
@@ -41,7 +42,8 @@ export const Concluidas = () => {
                         </div>
                         <div className="flex justify-around">
                             <button className="py-2 px-10 bg-blue-600 rounded-xl hover:bg-blue-800 cursor-pointer" onClick={() => setShowConfirm(false)}>Não</button>
-                            <button className="py-2 px-10 bg-blue-600 rounded-xl hover:bg-blue-800 cursor-pointer">Sim</button>
+                            <button className="py-2 px-10 bg-blue-600 rounded-xl hover:bg-blue-800 cursor-pointer"
+                            onClick={() => {concludedTasks.map((task) => removeTask(task.id)); setShowConfirm(false)}}>Sim</button>
                         </div>
                     </div>
                 </div>)}

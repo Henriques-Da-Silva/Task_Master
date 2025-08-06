@@ -23,7 +23,7 @@ export default function Init(props: InitProps) {
         <aside className={`flex flex-col duration-300 bg-gray-900 rounded-l-[8px] text-gray-300 ${!openSidebar ? 'w-66' : 'w-20'} p-3 border-x border-t border-gray-400`}>
           <nav className="flex flex-col gap-2">
 
-            <NavLink to="/" className={`flex gap-1 text-3xl font-bold text-white mb-10 mt-2 hover:text-blue-200`}>
+            <NavLink to="/" className={`flex items-center gap-1 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-10 mt-2 hover:text-blue-200`}>
               <img title="Início" src="/image.png" alt="Ícone" className={`${openSidebar && 'ml-2'} duration-200`} width={36} height={36}/>
               <p className={`${openSidebar && 'scale-0'} duration-200`}>TaskMaster</p>
             </NavLink>
