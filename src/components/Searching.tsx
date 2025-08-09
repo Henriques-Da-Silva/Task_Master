@@ -11,11 +11,11 @@ export default function SearchingResults(props: SearchProps) {
     const searchWord = props.search.toLowerCase().trim();
     const { tasks } = useTasks();
 
-    const searchingResults = useMemo(() => {return tasks.filter((task) => task.title.toLowerCase().trim().startsWith(searchWord))}, [tasks, searchWord])
+    const searchingResults = useMemo(() => {return tasks.filter((task) => task.title.toLowerCase().trim().includes(searchWord))}, [tasks, searchWord])
 
     if (searchingResults.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[300px] text-center">
+            <div className="flex flex-col items-center justify-center h-[70vh] text-center">
                 <FaSearch className="text-5xl text-gray-500 mb-4 animate-pulse" />
                 <h1 className="text-2xl font-semibold text-gray-400">
                 Nenhuma tarefa encontrada para a busca: "{props.search}"
