@@ -54,9 +54,9 @@ export const Filter = (props: filterProps) => {
         if (tasks.length === 0) {
             return null
         } else {
-                 return ( <div className="mb-5">
-                             <h1 className="border-b-3 border-blue-600 text-2xl font-bold p-4">{title}</h1>
-                             <ul className="space-y-3 gap-5 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                 return ( <div className="mb-5 px-2">
+                             <h1 className="sticky top-0 bg-neutral-900 border-b-3 border-blue-600 text-2xl font-bold py-5 px-8">{title}</h1>
+                             <ul className="px-3 space-y-3 gap-5 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                                 {tasks.map((task) => (
                                     <li key={task.id} className="flex p-3 rounded-lg justify-center">
                                         <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>

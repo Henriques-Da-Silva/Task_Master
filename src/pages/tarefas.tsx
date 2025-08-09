@@ -14,9 +14,9 @@ export default function ListaTarefas() {
   return (
     <Init>
           
-        <div className="p-2">
-        <h2 className="border-b-3 border-blue-600 text-2xl font-bold mb-4 p-4">Todas as Tarefas</h2>
-        <ul className="space-y-3 gap-5 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        <div className="px-2">
+        <h2 className="sticky top-0 bg-neutral-900 border-b-3 border-blue-600 text-2xl font-bold mb-4 py-5 px-8">Todas as Tarefas</h2>
+        <ul className="m-3 space-y-3 gap-5 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {tasks.map((task) => (
             <li key={task.id} className="flex p-3 rounded-lg justify-center">
                 <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>

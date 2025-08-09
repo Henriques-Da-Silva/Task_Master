@@ -65,7 +65,7 @@ export default function Init(props: InitProps) {
 
             <div className="flex-1">
 
-            <div className="p-5 min-h-[550px] max-h-[calc(100vh-90px)] overflow-y-auto scrollbar scrollbar-thumb-gray-800 scrollbar-hover:scrollbar-thumb-slate-700">
+            <div className="p-0 min-h-[550px] max-h-[calc(100vh-90px)] overflow-y-auto scrollbar scrollbar-thumb-gray-800 scrollbar-hover:scrollbar-thumb-slate-700">
                   <div>
                       {searching !== "" && <SearchingResults search={searching}></SearchingResults>} 
                       {searching === "" && props.children}
