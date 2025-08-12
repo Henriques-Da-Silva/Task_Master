@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Init from "../components/init";
 import { useTasks } from "../hooks/useTasks";
 import { useState } from "react";
+import { differenceInDays } from "date-fns";
 
 
 export default function NovaTarefa() {
@@ -54,6 +55,10 @@ export default function NovaTarefa() {
                         }
                         if (!dueDate.trim()) {
                             alert("Data de Vencimento é obrigatório");
+                            return;
+                        }
+                        if (differenceInDays(new Date(dueDate), new Date()) < 0) {
+                            alert("Data de vencimento inserida já vencida!")
                             return;
                         }
                         addTask(title, new Date(dueDate), tag, description, priority)

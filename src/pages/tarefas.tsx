@@ -24,7 +24,7 @@ export default function ListaTarefas() {
 
   function List(list: any[]) {
     return (
-    <ul className="m-3 space-y-3 gap-5 gap-y-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+    <ul className="m-3 space-y-3 gap-5 gap-y-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3">
             {list.map((task) => (
             <li key={task.id} className="flex p-3 rounded-lg justify-center">
                 <CardTask id={task.id} title={task.title} description={task.description || "Sem descrição"} dueDate={new Date(task.dueDate).toLocaleDateString()} done={task.done} priority={task.priority || "low"}></CardTask>

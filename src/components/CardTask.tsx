@@ -1,6 +1,6 @@
 import { useTasks } from "../hooks/useTasks";
 import { useNavigate } from "react-router-dom";
-import { Status, StatusOfPriority } from "./taskStatus";
+import { StatusOfPriority } from "./taskStatus";
 import { Vencimento } from "./Vencimento";
 
 interface CardTaskProps {
@@ -49,7 +49,6 @@ export const CardTask = (props: CardTaskProps) => {
             <h3 title={props.title} className="line-clamp-1 font-bold">{props.title}</h3>
             <div className="flex gap-1 items-center">
               <StatusOfPriority dueDate={props.dueDate} priority={props.priority}></StatusOfPriority>
-              <Status dueDate={props.dueDate} done={props.done}></Status>
               <Complete_uncomplete done={props.done} id={props.id}></Complete_uncomplete>
             </div>
         </div>

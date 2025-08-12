@@ -1,4 +1,5 @@
 import { formatDistance, differenceInDays, differenceInHours } from 'date-fns'
+import { AiTwotoneAlert } from "react-icons/ai";
 import { ptBR } from 'date-fns/locale';
 
 interface VencimentoProps {
@@ -29,11 +30,13 @@ export const Vencimento = (props: VencimentoProps) => {
 
             if (diasRestantes > -30) {
                 return (
-                    <p className="text-red-500 font-bold p-0.5">🚨Vencida há {Math.abs(diasRestantes)} dia(s)</p>
+                    <p className="flex items-center text-red-500 font-bold p-0.5">
+                        <AiTwotoneAlert className='sm:text-2xl md:text-2xl mr-1' />Vencida há {Math.abs(diasRestantes)} dia(s)</p>
                 )
             } else {
                 return (
-                    <p className="text-red-500 font-bold p-0.5">🚨Vencida há {dataFormatada}</p>
+                    <p className="flex items-center text-red-500 font-bold p-0.5">
+                        <AiTwotoneAlert className='sm:text-2xl md:text-2xl mr-1' />Vencida há {dataFormatada}</p>
                 )
             }
 
@@ -42,19 +45,22 @@ export const Vencimento = (props: VencimentoProps) => {
             if (horasRestantes > 0) {
 
                 return (
-                    <p className="text-red-500 font-bold p-0.5">🚨Vence Amanhã!!</p>
+                    <p className="flex items-center text-red-500 font-bold p-0.5">
+                        <AiTwotoneAlert className='sm:text-xl md:text-2xl mr-1' />Vence Amanhã!!</p>
                 )
             } else{
 
                 return (
-                    <p className="text-red-500 font-bold p-0.5">🚨Vence hoje!!</p>
+                    <p className="flex items-center text-red-500 font-bold p-0.5">
+                        <AiTwotoneAlert className='sm:text-xl md:text-2xl mr-1' /> Vence hoje!!</p>
                 )
             }
 
         } else if (diasRestantes < 7) {
 
             return (
-                <p className="text-red-500 font-bold p-0.5">🚨Vence em {dataFormatada}!!</p>
+                <p className="flex items-center text-red-500 font-bold p-0.5">
+                    <AiTwotoneAlert className='sm:text-xl md:text-2xl mr-1' />Vence em {dataFormatada}!!</p>
             )
 
         } else if (diasRestantes < 15) {
